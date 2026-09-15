@@ -1,0 +1,4 @@
+import { MapPin, ArrowUpRight } from 'lucide-react';
+import { gym } from '@/data/gym';
+import { ContactLink } from '../shared/ContactLink';
+export function Location(){return <section id="ubicacion" className="container section location"><div><p className="eyebrow">04 / NOS VEMOS AQUÍ</p><h2>TU GIMNASIO.<br/>EN EL <span>CENTRO.</span></h2><p className="address"><MapPin/><span><strong>{gym.address}</strong><br/>{gym.floors}</span></p><a className="text-link" href={gym.maps} target="_blank" rel="noopener noreferrer">Cómo llegar <ArrowUpRight size={17}/></a><div className="location-contact"><p>¿Tienes alguna pregunta?<br/>Hablemos de tu próximo paso.</p><ContactLink/></div></div><iframe title="Ubicación de Power Fit en Diego Portales 968, Temuco" src={gym.mapEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/></section>}
