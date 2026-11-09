@@ -1,0 +1,189 @@
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-gradient-to-b from-surface-container-high to-surface-container-lowest" id="plans">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-xl text-4xl md:text-5xl text-on-surface uppercase font-black">MEMBRESÍAS <span class="text-gradient pr-2">EXCLUSIVAS</span></h2>
+      <p class="text-on-surface-variant uppercase tracking-[0.4em] font-label-bold text-[10px] mt-4">Matrícula costo cero en todos los planes</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mt-12 relative z-10">
+      <div *ngFor="let plan of plans" class="group relative flex flex-col bg-surface-container-high/40 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+           [ngClass]="{'border-primary shadow-[0_0_40px_-10px_rgba(2,132,199,0.3)] bg-gradient-to-b from-surface-container-high/80 to-surface-container-lowest': plan.id === 'general'}">
+        
+        <!-- Glow Effect behind the card on hover -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 blur-3xl rounded-full group-hover:bg-primary/40 transition-colors duration-500"></div>
+
+        <div *ngIf="plan.badge" class="absolute top-0 right-0 left-0 bg-primary text-center text-white text-[10px] font-black uppercase tracking-[0.3em] py-2 shadow-md z-10">
+          {{ plan.badge }}
+        </div>
+        
+        <!-- Plan Header -->
+        <div class="mb-8 pt-4">
+          <h3 class="font-headline-md text-2xl text-white uppercase mb-2 tracking-widest font-black" 
+              [ngClass]="{'text-electric-blue': plan.id === 'universitario', 'text-mint-accent': plan.id === 'escolares', 'text-yellow-400': plan.id === 'adulto-mayor'}">
+            {{ plan.name }}
+          </h3>
+          <p class="text-xs text-on-surface-variant uppercase tracking-widest border-b border-white/10 pb-6">{{ plan.description || '&nbsp;' }}</p>
+        </div>
+        
+        <!-- Prices -->
+        <div class="flex-grow flex flex-col justify-center mb-8">
+          
+          <div *ngIf="plan.id === 'general'" class="space-y-2">
+            <div *ngFor="let price of plan.prices" class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 border border-white/5 transition-all hover:bg-white/10" [ngClass]="price.color">
+              <span class="font-label-bold text-[10px] tracking-widest uppercase" [ngClass]="price.textColor">{{ price.label }}</span>
+              <span class="text-lg font-black text-white tracking-wider">{{ price.amount }}</span>
+            </div>
+          </div>
+
+          <div *ngIf="plan.id !== 'general'" class="space-y-4">
+            <div *ngFor="let price of plan.prices" class="flex flex-col items-center p-4">
+              <span class="text-4xl font-black text-white mb-2">{{ price.amount }}</span>
+              <span class="font-label-bold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full bg-white/5 border border-white/10" [ngClass]="price.textColor">{{ price.label }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Features -->
+        <ul class="space-y-4 mb-10 text-xs uppercase tracking-wider text-on-surface-variant/90 border-t border-white/10 pt-8" *ngIf="plan.id !== 'general'">
+          <li class="flex items-center gap-3" *ngFor="let feature of plan.features">
+            <span class="material-symbols-outlined text-base" [ngClass]="{'text-electric-blue': plan.id === 'universitario', 'text-mint-accent': plan.id === 'escolares', 'text-yellow-400': plan.id === 'adulto-mayor'}">check_circle</span> 
+            {{ feature }}
+          </li>
+        </ul>
+        
+        <ul class="space-y-4 mb-10 text-xs uppercase tracking-wider text-on-surface-variant/90 border-t border-white/10 pt-8" *ngIf="plan.id === 'general'">
+          <li class="flex items-center gap-3" *ngFor="let feature of plan.features">
+            <span class="material-symbols-outlined text-base text-primary">check_circle</span> 
+            {{ feature }}
+          </li>
+        </ul>
+        
+        <!-- Buttons -->
+        <ng-container [ngSwitch]="plan.id">
+          <!-- Plan General (Modal Trigger) -->
+          <button *ngSwitchCase="'general'"
+             class="w-full py-4 font-label-bold text-[11px] uppercase tracking-[0.2em] mt-auto text-center cursor-pointer bg-primary text-white hover:bg-white hover:text-black transition-all rounded-xl shadow-lg shadow-primary/30 font-black border-none"
+             (click)="handlePlanClick($event, plan.id)">
+             {{ plan.ctaText }}
+          </button>
+          
+          <!-- Plan Universitario -->
+          <a *ngSwitchCase="'universitario'"
+             class="w-full py-4 font-label-bold text-[11px] uppercase tracking-[0.2em] mt-auto inline-block text-center cursor-pointer border border-electric-blue text-electric-blue hover:bg-electric-blue hover:text-black transition-all rounded-xl"
+             [href]="plan.ctaLink"
+             target="_blank">
+             {{ plan.ctaText }}
+          </a>
+
+          <!-- Plan Escolares -->
+          <a *ngSwitchCase="'escolares'"
+             class="w-full py-4 font-label-bold text-[11px] uppercase tracking-[0.2em] mt-auto inline-block text-center cursor-pointer border border-mint-accent text-mint-accent hover:bg-mint-accent hover:text-black transition-all rounded-xl"
+             [href]="plan.ctaLink"
+             target="_blank">
+             {{ plan.ctaText }}
+          </a>
+
+          <!-- Plan Adulto Mayor -->
+          <a *ngSwitchCase="'adulto-mayor'"
+             class="w-full py-4 font-label-bold text-[11px] uppercase tracking-[0.2em] mt-auto inline-block text-center cursor-pointer border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all rounded-xl"
+             [href]="plan.ctaLink"
+             target="_blank">
+             {{ plan.ctaText }}
+          </a>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Boxing Plans Section -->
+    <div class="mt-24 pt-16 border-t border-white/5 relative z-10">
+      <div class="text-center mb-12">
+        <h2 class="font-headline-xl text-3xl md:text-5xl text-white uppercase font-black">BOXEO <span class="text-gradient pr-2">ELIXIR</span></h2>
+        <p class="text-on-surface-variant uppercase tracking-[0.3em] md:tracking-[0.4em] font-label-bold text-[9px] md:text-[10px] mt-4">Entrena como un campeón con nuestros planes especializados</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-xs sm:max-w-none md:max-w-3xl lg:max-w-5xl mx-auto">
+        <div *ngFor="let boxingPlan of boxingPlans" class="group relative flex flex-col bg-[#0a0a0a] backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_40px_-10px_rgba(255,140,0,0.3)] hover:border-primary/50 transition-all duration-500 hover:-translate-y-2">
+          
+          <!-- Lado Fotográfico (El Poster Completo sin recortes) -->
+          <div class="relative w-full overflow-hidden bg-black">
+            <img [src]="boxingPlan.image" [alt]="boxingPlan.title" class="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
+          </div>
+          
+          <!-- Footer con Botón -->
+          <div class="p-5 md:p-6 bg-gradient-to-t from-surface-container-high to-[#0a0a0a] border-t border-white/5">
+            <a [href]="boxingPlan.ctaLink" target="_blank" 
+               class="w-full flex items-center justify-center gap-2 py-4 px-6 bg-transparent border-2 font-label-bold text-[12px] uppercase tracking-[0.2em] text-center rounded-xl transition-all duration-300 font-black"
+               [ngClass]="{
+                 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white shadow-[0_0_15px_rgba(239,68,68,0.1)] hover:shadow-[0_0_25px_rgba(239,68,68,0.4)]': boxingPlan.theme === 'red',
+                 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)]': boxingPlan.theme === 'blue',
+                 'border-primary text-primary hover:bg-primary hover:text-black shadow-[0_0_15px_rgba(255,140,0,0.1)] hover:shadow-[0_0_25px_rgba(255,140,0,0.4)]': boxingPlan.theme === 'orange'
+               }">
+              SOLICITAR PLAN <i class="bi bi-whatsapp text-sm"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal for General Plan Options -->
+  <div *ngIf="isModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" (click)="closeModal()"></div>
+    <div class="bg-surface-container-high border border-white/10 p-6 md:p-8 rounded-2xl relative z-10 w-full max-w-md shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button (click)="closeModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-white transition-colors" aria-label="Cerrar modal">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <h3 class="font-headline-md text-2xl text-on-surface uppercase font-black mb-6 text-center">SELECCIONA <br><span class="text-gradient">TU PERÍODO</span></h3>
+      
+      <div class="space-y-3">
+        <!-- Mensual -->
+        <a href="https://wa.me/56991832903?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Plan%20General%20Mensual%20(%2430.000)" target="_blank" (click)="closeModal()" class="relative overflow-hidden group block w-full bg-transparent border-2 border-mint-accent/80 p-3.5 rounded-xl text-center transition-all hover:border-mint-accent">
+          <div class="relative z-10">
+            <div class="font-label-bold text-[10px] uppercase tracking-widest text-mint-accent group-hover:text-black mb-0.5 transition-colors">MENSUAL</div>
+            <div class="text-2xl font-black text-on-surface group-hover:text-black transition-colors">$30.000</div>
+          </div>
+          <div class="absolute inset-0 bg-mint-accent transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+
+        <!-- Bimestral -->
+        <a href="https://wa.me/56991832903?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Plan%20General%20Bimestral%20(%2452.000)" target="_blank" (click)="closeModal()" class="relative overflow-hidden group block w-full bg-transparent border-2 border-yellow-400/80 p-3.5 rounded-xl text-center transition-all hover:border-yellow-400">
+          <div class="relative z-10">
+            <div class="font-label-bold text-[10px] uppercase tracking-widest text-yellow-400 group-hover:text-black mb-0.5 transition-colors">BIMESTRAL</div>
+            <div class="text-2xl font-black text-on-surface group-hover:text-black transition-colors">$52.000</div>
+          </div>
+          <div class="absolute inset-0 bg-yellow-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+
+        <!-- Trimestral -->
+        <a href="https://wa.me/56991832903?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Plan%20General%20Trimestral%20(%2469.000)" target="_blank" (click)="closeModal()" class="relative overflow-hidden group block w-full bg-transparent border-2 border-vibrant-pink/80 p-3.5 rounded-xl text-center transition-all hover:border-vibrant-pink">
+          <div class="relative z-10">
+            <div class="font-label-bold text-[10px] uppercase tracking-widest text-vibrant-pink group-hover:text-black mb-0.5 transition-colors">TRIMESTRAL</div>
+            <div class="text-2xl font-black text-on-surface group-hover:text-black transition-colors">$69.000</div>
+          </div>
+          <div class="absolute inset-0 bg-vibrant-pink transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+
+        <!-- Cuatrimestral -->
+        <a href="https://wa.me/56991832903?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Plan%20General%20Cuatrimestral%20(%2485.000)" target="_blank" (click)="closeModal()" class="relative overflow-hidden group block w-full bg-transparent border-2 border-electric-blue/80 p-3.5 rounded-xl text-center transition-all hover:border-electric-blue">
+          <div class="relative z-10">
+            <div class="font-label-bold text-[10px] uppercase tracking-widest text-electric-blue group-hover:text-black mb-0.5 transition-colors">CUATRIMESTRAL</div>
+            <div class="text-2xl font-black text-on-surface group-hover:text-black transition-colors">$85.000</div>
+          </div>
+          <div class="absolute inset-0 bg-electric-blue transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+
+        <!-- Semestral -->
+        <a href="https://wa.me/56991832903?text=Hola,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Plan%20General%20Semestral%20(%24109.000)" target="_blank" (click)="closeModal()" class="relative overflow-hidden group block w-full bg-transparent border-2 border-purple-400/80 p-3.5 rounded-xl text-center transition-all hover:border-purple-400">
+          <div class="relative z-10">
+            <div class="font-label-bold text-[10px] uppercase tracking-widest text-purple-400 group-hover:text-black mb-0.5 transition-colors">SEMESTRAL</div>
+            <div class="text-2xl font-black text-on-surface group-hover:text-black transition-colors">$109.000</div>
+          </div>
+          <div class="absolute inset-0 bg-purple-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

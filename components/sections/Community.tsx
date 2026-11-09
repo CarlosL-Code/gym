@@ -1,5 +1,0 @@
-'use client';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
-import { gym, rules } from '@/data/gym';
-import { ArrowUpRight } from 'lucide-react';
-export function Community(){return <section className="container community-section"><div className="community"><p className="eyebrow">MÁS QUE UNA RUTINA</p><h2>LA ENERGÍA<br/>SE <span>COMPARTE.</span></h2><p>Entrenamientos, novedades y logros de nuestra comunidad.<br/>Conoce el día a día de Power Fit.</p><a href={gym.instagram} target="_blank" rel="noopener noreferrer">@powerfit.temuco <ArrowUpRight/></a><span className="community-word" aria-hidden="true">POWER</span></div><div className="rules"><p className="eyebrow">UN BUEN ESPACIO LO CUIDAMOS TODOS</p><h3>Entrenemos con respeto.</h3><Accordion type="single" collapsible>{rules.map(([title,body],i)=><AccordionItem key={title} value={title}><AccordionTrigger><span className="rule-number">0{i+1}</span>{title}</AccordionTrigger><AccordionContent><p>{body}</p></AccordionContent></AccordionItem>)}</Accordion></div></section>}

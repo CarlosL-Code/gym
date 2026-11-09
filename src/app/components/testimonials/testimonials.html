@@ -1,0 +1,175 @@
+<section class="py-xl px-margin-mobile md:px-margin-desktop bg-gradient-to-b from-surface-container-lowest to-surface" id="testimonials">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-xl text-4xl md:text-5xl text-on-surface uppercase italic font-black">LO QUE DICEN <br class="md:hidden"><span class="text-gradient">NUESTROS SOCIOS</span></h2>
+      <p class="text-on-surface-variant uppercase tracking-[0.4em] font-label-bold text-[10px] mt-4">Comunidad Elixir Gym</p>
+      
+      <!-- Google Rating Badge -->
+      <div class="inline-flex items-center gap-2.5 mt-5 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-lg">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        <span class="text-white font-black text-sm">5.0</span>
+        <div class="flex text-yellow-400 text-xs">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <span class="text-on-surface-variant text-[11px] font-medium tracking-wide">Opiniones en Google</span>
+      </div>
+    </div>
+    
+    <!-- Carousel Container -->
+    <div class="relative max-w-5xl mx-auto mt-6 md:mt-12 mb-20 px-4 md:px-12">
+      
+      <!-- Grid overlapping container -->
+      <div class="grid w-full">
+        <ng-container *ngFor="let t of testimonials; let i = index">
+          
+          <div style="grid-area: 1 / 1;" 
+               class="transition-all duration-1000 ease-in-out flex flex-col md:flex-row gap-8 md:gap-16 items-center bg-gradient-to-br from-surface-container-high/50 to-surface-container-lowest/80 backdrop-blur-xl border border-white/10 p-8 md:p-14 rounded-[2rem] shadow-2xl"
+               [class.opacity-100]="i === currentIndex"
+               [class.z-10]="i === currentIndex"
+               [class.translate-y-0]="i === currentIndex"
+               [class.scale-100]="i === currentIndex"
+               [class.opacity-0]="i !== currentIndex"
+               [class.z-0]="i !== currentIndex"
+               [class.translate-y-4]="i !== currentIndex"
+               [class.scale-95]="i !== currentIndex"
+               [class.pointer-events-none]="i !== currentIndex">
+               
+            <!-- Left Side: Profile -->
+            <div class="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left shrink-0">
+              <div class="relative mb-6">
+                <div class="absolute inset-0 bg-primary/30 rounded-full blur-xl"></div>
+                <img [src]="t.avatar" [alt]="t.name" class="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-primary shadow-[0_0_30px_rgba(2,132,199,0.5)]">
+              </div>
+              
+              <h4 class="font-headline-md text-xl text-white uppercase tracking-wider mb-1">{{ t.name }}</h4>
+              <p class="font-label-bold text-xs text-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-1.5 justify-center md:justify-start">
+                <i class="bi bi-google text-sm"></i> {{ t.timeClient }}
+              </p>
+              
+              <div class="flex gap-1 justify-center md:justify-start">
+                <span *ngFor="let star of stars" class="material-symbols-outlined text-yellow-400 text-xl drop-shadow-md" [class.opacity-30]="star > t.rating">star</span>
+              </div>
+            </div>
+            
+            <!-- Right Side: Quote -->
+            <div class="w-full md:w-2/3 relative pt-4 md:pt-0">
+              <!-- Giant minimal quote mark -->
+              <div class="absolute -top-10 -left-6 md:-top-16 md:-left-12 text-primary/10 select-none pointer-events-none">
+                <span class="font-display-lg text-[120px] md:text-[150px] leading-none">"</span>
+              </div>
+              
+              <p class="font-body-md text-lg md:text-2xl text-on-surface leading-relaxed relative z-10 italic">
+                {{ t.comment }}
+              </p>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button (click)="prevTestimonial()" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-12 h-12 flex items-center justify-center bg-surface-container-high/80 hover:bg-primary border border-white/10 rounded-full text-white transition-colors z-20 shadow-xl backdrop-blur-sm cursor-pointer">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      
+      <button (click)="nextTestimonial()" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-12 h-12 flex items-center justify-center bg-surface-container-high/80 hover:bg-primary border border-white/10 rounded-full text-white transition-colors z-20 shadow-xl backdrop-blur-sm cursor-pointer">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+
+      <!-- Indicators -->
+      <div class="flex justify-center gap-3 absolute -bottom-12 left-0 right-0 z-20">
+        <button *ngFor="let t of testimonials; let i = index" 
+                (click)="setTestimonial(i)"
+                class="h-1.5 rounded-full transition-all duration-300 cursor-pointer"
+                [class.w-8]="i === currentIndex"
+                [class.bg-primary]="i === currentIndex"
+                [class.w-2]="i !== currentIndex"
+                [class.bg-white/20]="i !== currentIndex">
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+      <a href="https://www.google.com/search?q=Elixir+GYM+Temuco#lrd=0x9614d3c3327f31df:0x6fb134e78aef22d1,3" target="_blank" rel="noopener" class="bg-white/5 border border-white/20 text-white font-label-bold text-xs uppercase px-10 py-4 rounded-xl tracking-[0.2em] backdrop-blur-sm hover:bg-white hover:text-black transition-all inline-flex items-center justify-center gap-2.5 w-full sm:w-auto cursor-pointer">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        DEJAR OPINIÓN EN GOOGLE
+      </a>
+      <a href="https://wa.me/56991832903?text=Hola,%20vi%20las%20opiniones%20en%20el%20sitio%20web%20y%20me%20gustar%C3%ADa%20comenzar%20a%20entrenar." target="_blank" class="bg-primary text-black font-label-bold text-xs uppercase px-10 py-4 rounded-xl tracking-[0.2em] hover:bg-white hover:text-black transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto font-black shadow-lg shadow-primary/30">
+        QUIERO COMENZAR
+      </a>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div *ngIf="isReviewModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" (click)="closeReviewModal()"></div>
+    <div class="bg-surface-container-high border border-white/10 p-6 md:p-8 rounded-xl relative z-10 w-full max-w-md shadow-2xl flex flex-col items-center">
+      <button (click)="closeReviewModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-white transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      
+      <h3 class="font-headline-md text-2xl text-on-surface uppercase italic font-black mb-2 text-center">TÚ OPINIÓN <span class="text-gradient">IMPORTA</span></h3>
+      <p class="text-on-surface-variant text-sm mb-8 text-center">Inicia sesión para dejar tu reseña oficial.</p>
+
+      <!-- Step 1: Login -->
+      <div *ngIf="!googleUser" class="flex flex-col items-center w-full">
+        <div id="google-btn-container" class="mb-4 flex justify-center w-full h-[40px]"></div>
+        
+        <div class="w-full border-t border-white/10 my-4 relative">
+          <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface-container-high px-2 text-xs text-on-surface-variant">O para probar</span>
+        </div>
+        <button (click)="simulateGoogleLogin()" class="text-xs text-primary-container hover:text-white underline">Simular inicio de sesión (Dev)</button>
+      </div>
+
+      <!-- Step 2: Review Form -->
+      <div *ngIf="googleUser" class="w-full flex flex-col items-center animate-fade-in">
+        <!-- Profile Info -->
+        <div class="flex items-center gap-3 mb-6 bg-surface-container-low p-3 rounded-full border border-white/5 pr-6 self-start w-full">
+          <img [src]="googleUser.picture" alt="" loading="lazy" class="w-10 h-10 rounded-full border-2 border-primary-container">
+          <div class="text-left">
+            <div class="text-[10px] text-on-surface-variant uppercase tracking-widest">Publicando como</div>
+            <div class="font-label-bold text-sm text-white">{{ googleUser.name }}</div>
+          </div>
+        </div>
+
+        <!-- Stars -->
+        <div class="flex gap-2 mb-6">
+          <button *ngFor="let star of stars" 
+                  (mouseenter)="setHoverStar(star)" 
+                  (mouseleave)="setHoverStar(0)"
+                  (click)="setStar(star)"
+                  class="transition-transform hover:scale-110 focus:outline-none bg-transparent border-none">
+            <span class="material-symbols-outlined text-4xl"
+                  [style.fontVariationSettings]="(hoveredStar >= star || selectedStar >= star) ? '\'FILL\' 1' : '\'FILL\' 0'"
+                  [ngClass]="(hoveredStar >= star || selectedStar >= star) ? 'text-yellow-400' : 'text-on-surface-variant'">
+              star
+            </span>
+          </button>
+        </div>
+
+        <!-- Text Area -->
+        <textarea [(ngModel)]="reviewText" 
+                  placeholder="Escribe tu experiencia aquí..." 
+                  class="w-full bg-surface-container-low border border-white/10 rounded-lg p-4 text-white text-sm min-h-[120px] focus:outline-none focus:border-primary-container transition-colors mb-6 resize-none"></textarea>
+        
+        <!-- Submit Button -->
+        <button (click)="sendReview()" 
+                [disabled]="selectedStar === 0 || !reviewText.trim()"
+                [ngClass]="{'opacity-50 cursor-not-allowed': selectedStar === 0 || !reviewText.trim()}"
+                class="w-full py-4 bg-primary-container text-white font-label-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all btn-premium">
+          ENVIAR RESEÑA
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</section>

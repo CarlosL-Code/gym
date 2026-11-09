@@ -1,31 +1,59 @@
-# Power Fit Temuco
+# WebGym
 
-Sitio React + TypeScript, con enrutamiento compatible con Next.js mediante Vinext.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
 
-## Organización
-- `app/page.tsx`: composición de la página, sin lógica de secciones.
-- `app/layout.tsx`: documento y metadatos SEO.
-- `components/layout/`: navegación, marca tipográfica y pie.
-- `components/sections/`: secciones independientes.
-- `components/shared/`: elementos reutilizables.
-- `components/ui/`: primitivas disponibles del framework.
-- `data/gym.ts`: datos del negocio, navegación, planes y normas.
-- `styles/site.css`: tokens visuales, estilos y adaptación responsive.
-- `public/images/`: imágenes locales.
+## Development server
 
-## Contenido pendiente de confirmación
-El brief no incluye horas exactas, precios actuales, logo original ni teléfono internacional completo. Se usa contacto por Instagram, valores a consultar y una marca tipográfica provisional. La foto de ambiente es referencial. No se presentan promociones históricas como vigentes ni testimonios inventados. El mapa corresponde a la dirección proporcionada.
+To start a local development server, run:
 
-Para habilitar WhatsApp, confirmar primero el número completo y agregar el enlace en `data/gym.ts`. Sustituir la fotografía por material autorizado del gimnasio y la marca tipográfica por el logo original cuando estén disponibles.
+```bash
+ng serve
+```
 
-## Desarrollo
-Usar el gestor de paquetes indicado en `package.json`. `npm run dev` inicia desarrollo; `npm run build` compila el sitio (también disponibles mediante pnpm). El despliegue es privado por defecto.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Fotografía
-Risen Wang, Unsplash: https://unsplash.com/photos/gym-equipment-inside-room-20jX9b35r_M
-Licencia: https://unsplash.com/license. Fotografía referencial, no corresponde al local.
+## Code scaffolding
 
-## Movimiento y formas
-- `hooks/useScrollReveal.ts`: IntersectionObserver compartido, entradas repetibles desde arriba y abajo. Desconecta el observador al desmontar y respeta cambios de preferencia de movimiento reducido.
-- `components/shared/AnimatedMain.tsx`: contenedor React de animación; mantiene la composición principal simple.
-- `styles/motion.css`: transiciones, entradas escalonadas, formas redondeadas y microinteracciones. Sin dependencias adicionales ni eventos continuos de scroll; contenido visible si JavaScript está desactivado, al imprimir y al recibir foco de teclado.
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

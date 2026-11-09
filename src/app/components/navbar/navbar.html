@@ -1,0 +1,128 @@
+<!-- Top Navbar (Desktop and Mobile) -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-500 pointer-events-none">
+  <div class="mx-auto pointer-events-auto transition-all duration-500 flex justify-between items-center"
+       [ngClass]="isScrolled ? 'w-full bg-black/95 backdrop-blur-xl border-b border-white/10 py-3 px-5 md:px-10 shadow-2xl' : 'w-[95%] md:w-[90%] max-w-[1200px] mt-4 md:mt-6 rounded-full bg-[#1c1c1c]/40 backdrop-blur-xl border border-white/10 py-2 px-5 md:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)]'">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center group">
+      <img alt="Logotipo de Elixir Gym" class="w-auto object-contain transition-all duration-500" [ngClass]="isScrolled ? 'h-8 md:h-10' : 'h-10 md:h-12'" src="/logo.png">
+    </a>
+    
+    <!-- Desktop Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <a class="relative group font-label-bold text-[11px] uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 py-2" href="#home">
+        Inicio
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-container transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a class="relative group font-label-bold text-[11px] uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 py-2" href="#about">
+        Nosotros
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-container transition-all duration-300 group-hover:w-full"></span>
+      </a>
+
+      <a class="relative group font-label-bold text-[11px] uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 py-2" href="#plans">
+        Planes
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-container transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a class="relative group font-label-bold text-[11px] uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 py-2" href="#trainers">
+        Entrenadores
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-container transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a class="relative group font-label-bold text-[11px] uppercase tracking-[0.25em] text-white/70 hover:text-white transition-colors duration-300 py-2" href="#contact">
+        Contacto
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-container transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+    
+    <!-- Desktop Actions -->
+    <div class="hidden lg:flex items-center gap-6 pointer-events-auto">
+      
+      <!-- Theme Switcher (Hover Dropdown) -->
+      <div class="relative group">
+        <button class="flex items-center justify-center w-10 h-10 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 transition-colors backdrop-blur-md" title="Personalizar Tema">
+          <span class="material-symbols-outlined text-white/70 group-hover:text-white text-xl">palette</span>
+        </button>
+        
+        <!-- Dropdown Menu -->
+        <div class="absolute top-[120%] right-0 p-3 bg-[#1c1c1c]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 flex flex-col gap-3 before:absolute before:-top-4 before:left-0 before:w-full before:h-4">
+          <button (click)="setTheme('theme-orange')" [class.border-2]="activeTheme === 'theme-orange'" [class.border-white]="activeTheme === 'theme-orange'" class="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-110 transition-transform shadow-sm" title="Tema Naranja"></button>
+          <button (click)="setTheme('theme-blue')" [class.border-2]="activeTheme === 'theme-blue'" [class.border-white]="activeTheme === 'theme-blue'" class="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 hover:scale-110 transition-transform shadow-sm" title="Tema Azul"></button>
+          <button (click)="setTheme('theme-purple')" [class.border-2]="activeTheme === 'theme-purple'" [class.border-white]="activeTheme === 'theme-purple'" class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 hover:scale-110 transition-transform shadow-sm" title="Tema Púrpura"></button>
+        </div>
+      </div>
+
+      <!-- Desktop CTA -->
+      <a href="https://wa.me/56991832903?text=Hola,%20quisiera%20solicitar%20mi%20prueba%20gratis" target="_blank" class="relative overflow-hidden group bg-transparent border-2 border-primary text-primary hover:text-black font-black text-[11px] uppercase tracking-widest px-8 py-3 rounded-full hover:-translate-y-0.5 transition-all duration-300">
+        <span class="relative z-10 flex items-center gap-1 transition-colors duration-300">PRUEBA GRATIS <i class="bi bi-ticket-perforated-fill text-[14px]"></i></span>
+        <div class="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger Button -->
+    <button (click)="toggleMobileMenu()" class="lg:hidden text-white/80 hover:text-white transition-colors p-2 focus:outline-none pointer-events-auto flex items-center justify-center">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Floating WhatsApp Button (Mobile Only) -->
+<a href="https://wa.me/56991832903" target="_blank" rel="noopener noreferrer" class="lg:hidden fixed bottom-6 right-4 z-[200] w-14 h-14 bg-primary-container rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-110 transition-transform">
+  <i class="bi bi-whatsapp text-3xl"></i>
+</a>
+
+<!-- Full-Screen Overlay Menu (Mobile) -->
+<div class="lg:hidden fixed inset-0 z-[60] flex flex-col transition-all duration-500 ease-in-out"
+     [ngClass]="isMobileMenuOpen ? 'opacity-100 pointer-events-auto backdrop-blur-2xl bg-black/95' : 'opacity-0 pointer-events-none backdrop-blur-none bg-black/0'">
+  
+  <!-- Encabezado del Menú -->
+  <div class="flex justify-between items-center p-6 md:p-8 border-b border-white/10"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(-20px)', 'transition': 'transform 0.5s ease-out 0.1s'}">
+    <img alt="Logotipo de Elixir Gym" class="h-8 md:h-10 w-auto object-contain" src="/logo.png">
+    <button (click)="closeMobileMenu()" class="text-white hover:text-primary bg-white/5 rounded-full p-2 border border-white/10 transition-colors flex items-center justify-center">
+      <span class="material-symbols-outlined text-2xl">close</span>
+    </button>
+  </div>
+  
+  <!-- Enlaces del Menú -->
+  <div class="flex flex-col items-center justify-center flex-1 px-6 py-10 gap-8 overflow-y-auto">
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#home"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.1s'}">
+      Inicio
+    </a>
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#about"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.2s'}">
+      Nosotros
+    </a>
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#plans"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.3s'}">
+      Planes
+    </a>
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#trainers"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.4s'}">
+      Equipo
+    </a>
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#gallery"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.5s'}">
+      Galería
+    </a>
+    <a (click)="closeMobileMenu()" class="font-display-lg text-4xl uppercase font-black tracking-widest text-white/70 hover:text-white hover:scale-110 transition-all duration-300" href="#contact"
+       [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.6s'}">
+      Contacto
+    </a>
+    
+    <div class="mt-8 w-full max-w-xs flex flex-col gap-6"
+         [ngStyle]="{'transform': isMobileMenuOpen ? 'translateY(0)' : 'translateY(40px)', 'opacity': isMobileMenuOpen ? '1' : '0', 'transition': 'all 0.5s ease-out 0.7s'}">
+        
+        <!-- Mobile Theme Switcher -->
+        <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-full px-5 py-3 backdrop-blur-md">
+          <span class="text-xs uppercase tracking-widest text-white/70 font-label-bold">TEMA</span>
+          <div class="flex items-center gap-3">
+            <button (click)="setTheme('theme-orange')" [class.border-2]="activeTheme === 'theme-orange'" [class.border-white]="activeTheme === 'theme-orange'" class="w-5 h-5 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 hover:scale-110 transition-transform" title="Tema Naranja"></button>
+            <button (click)="setTheme('theme-blue')" [class.border-2]="activeTheme === 'theme-blue'" [class.border-white]="activeTheme === 'theme-blue'" class="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 hover:scale-110 transition-transform" title="Tema Azul"></button>
+            <button (click)="setTheme('theme-purple')" [class.border-2]="activeTheme === 'theme-purple'" [class.border-white]="activeTheme === 'theme-purple'" class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 hover:scale-110 transition-transform" title="Tema Púrpura"></button>
+          </div>
+        </div>
+
+        <a (click)="closeMobileMenu()" href="https://wa.me/56991832903" target="_blank" class="relative overflow-hidden group block w-full text-center bg-transparent border border-primary text-primary hover:text-black font-black text-[11px] uppercase tracking-widest px-8 py-4 rounded-full transition-all duration-300">
+          <span class="relative z-10 flex items-center justify-center gap-2">PRUEBA GRATIS <i class="bi bi-ticket-perforated-fill text-sm"></i></span>
+          <div class="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+        </a>
+      </div>
